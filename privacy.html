@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Privacy Policy | MovieBook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --primary:#e50914;
+  --bg:#0b0b0b;
+  --card:#151515;
+  --text:#fff;
+  --muted:#aaa;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:var(--bg);color:var(--text)}
+
+/* ================= NAVBAR ================= */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;  height:10vh;
+  padding:0 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(14, 12, 12, 0.299);
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+  z-index:1000;
+}
+
+
+.logo{
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.logo span{
+
+  font-size:26px;
+  font-weight:700;
+ 
+  cursor:pointer;
+  color: red;
+
+}
+.logo span{ color:var(--primary); }
+
+.logo:hover{
+  background-color: rgb(251, 255, 0);
+  color: red;
+  color-scheme: var(--primary);
+  border-radius: 14px;
+  width: max-content;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a{
+  color:#ccc;
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+  padding-bottom:4px;
+}
+
+/* underline animation */
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:var(--primary);
+  transition:.3s;
+}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:#fff}
+
+/* hamburger */
+.menu-btn{
+  display:none;
+  font-size:2rem;
+  cursor:pointer;
+}
+
+/* mobile menu */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:100%;
+  height:100vh;
+  background:#000;
+  padding:40px;
+  transition:.4s ease;
+  z-index:2000;
+}
+
+.mobile-menu.active{right:0}
+
+.close-btn{
+  font-size:2rem;
+  text-align:right;
+  cursor:pointer;
+}
+
+.mobile-menu a{
+  display:block;
+  margin:25px 0;
+  font-size:1.3rem;
+  color:#ccc;
+  text-decoration:none;
+}
+.mobile-menu a:hover{color:var(--primary)}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:65vh;
+  padding-top:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background-image: url("https://img.freepik.com/free-vector/wave-background-abstract-gradient-design_483537-3688.jpg?semt=ais_hybrid&w=740&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background:
+    radial-gradient(circle at top,#1a1a1a,#000),
+    linear-gradient(135deg,#111,#000); */
+}
+
+.hero h1{
+  font-size:3.5rem;
+  font-weight:800;
+}
+
+.hero h1{
+  transition: all 0.4s ease;
+}
+
+.hero h1:hover{
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  text-transform: capitalize;
+  transform: translateY(-10px) scale(1.05);
+  letter-spacing: 1px;
+}
+
+.hero p{
+  margin-top:12px;
+  color:#ccc;
+  max-width:600px;
+}
+
+/* ================= CONTENT ================= */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:80px 25px;
+}
+
+.policy-card{
+  background:var(--card);
+  padding:35px;
+  border-radius:16px;
+  margin-bottom:30px;
+  border:1px solid rgba(255,255,255,.05);
+  transition:.3s;
+}
+
+.policy-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,.7);
+}
+
+.policy-card h2{
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+.policy-card p{
+  color:#ccc;
+  line-height:1.8;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#000;
+  padding:60px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  border-top:3px solid var(--primary);
+}
+
+footer h4{margin-bottom:15px;
+color: rgb(210, 19, 19);
+font-weight: 700;
+font-size: 18px;}
+
+footer a{
+  display:block;
+  color:#aaa;
+  text-decoration:none;
+  margin:8px 0;
+}
+footer a:hover{color:whitesmoke;font-weight: 700;
+}
+
+.copy{
+  grid-column:1/-1;
+  text-align: center;
+  margin-top:30px;
+  color:#d2d2d2;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  footer{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:700px){
+  nav{padding:0 25px}
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .hero h1{font-size:2.4rem}
+  .hero img{
+    width: 100%;
+    height: 40%;
+  }
+}
+
+@media(max-width:500px){
+  footer{grid-template-rows:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+ <div class="logo"> 🎬 Movie<span>Book</span></div>  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="./Help and support.html">Help</a>
+     <a href="./about.html">About</a>
+<a href="./contact.html">Contact</a>
+<a href="./signup.html">Signup</a>
+<a href="./login.html">Login</a>
+  </div>
+  <div class="menu-btn" onclick="openMenu()">☰</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="menu">
+  <div class="close-btn" onclick="closeMenu()">✕</div>
+  <a href="./index.html">Home</a>
+  <a href="./movies.html">Movies</a>
+  <a href="Help and support.html">Help</a>
+ <a href="./about.html">About</a>
+<a href="./contact.html">Contact</a>
+<a href="./signup.html">Signup</a>
+<a href="./login.html">Login</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Privacy Policy</h1>
+    <p>We respect your privacy and protect your personal information.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="container">
+  <div class="policy-card">
+    <h2>Information Collection</h2>
+    <p>We collect limited personal data such as email, device details, and payment information when required.</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>Use of Information</h2>
+    <p>Data is used to deliver streaming services, recommendations, security, and customer support.</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>Security</h2>
+    <p>Industry-standard encryption and security protocols protect your data.</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>Cookies</h2>
+    <p>Cookies improve performance, analytics, and personalization.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <h4>MovieBook</h4>
+    <a href="./about.html">About</a>
+    <a href="./booking.html">Book Movie Ticket</a>
+  </div>
+  <div>
+    <h4>Support</h4>
+    <a href="./Help and support.html">Help Center</a>
+    <a href="./contact.html">Contact</a>
+   
+  </div>
+  <div>
+    <h4>Legal</h4>
+    <a href="./privacy.html">Privacy</a>
+    <a href="./condition.html">Terms & Condition</a>
+   
+  </div>
+  <div>
+    <h4>Apps</h4>
+    <a href="https://play.google.com/store/games?device=windows">Playstore</a>
+    <a href="https://www.apple.com/in/app-store/">App Store</a>
+  </div>
+  <div style="gap: 4px;" class="copy">
+MovieBook is a modern and user-friendly movie ticket booking platform designed to deliver a smooth and secure cinematic experience. With an elegant interface, fast performance, and responsive design across all devices, MovieBook allows users to explore movies, manage bookings, and access support effortlessly. Our focus on reliability, simplicity, and premium design ensures that every user enjoys a seamless journey from browsing to booking, making MovieBook a trusted destination for entertainment lovers.<br> <br>© 2025 MovieBook. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+function openMenu(){document.getElementById("menu").classList.add("active")}
+function closeMenu(){document.getElementById("menu").classList.remove("active")}
+</script>
+
+</body>
+</html>

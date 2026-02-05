@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | MovieBook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif
+    }
+
+    body {
+      background: #0f0f0f;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 40px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav a {
+      position: relative;
+      color: #fff;
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #e50914;
+      transition: .3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #e50914;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      height: 60vh;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      padding: 40px;
+      background:
+        linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, .2)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1600") center/cover no-repeat;
+      animation: heroZoom 14s infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1) }
+      to { transform: scale(1.05) }
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      margin-left: 10px;
+      text-shadow: 0 0px 8px rgba(12, 12, 12, 0.784);
+      margin-top: 3px;
+      font-weight: 700;
+    }
+.hero h1{
+  font-size:3.5rem;
+  font-weight:800;
+}
+
+.hero h1{
+  transition: all 0.4s ease;
+}
+
+.hero h1:hover{
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  text-transform: capitalize;
+  transform: translateY(-10px) scale(1.05);
+  letter-spacing: 1px;
+}
+    .hero p {
+      margin-top: 10px;
+      color: #f7f7f7;
+      margin-left: 10px;
+      font-weight: 500;
+    }
+
+    /* ================= CONTACT ================= */
+    .contact {
+      padding: 90px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      padding: 30px;
+      border-radius: 16px;
+      animation: fadeUp .8s ease forwards;
+      box-shadow: 0 10px 20px rgb(16, 16, 16);
+    }
+.card:hover{
+  transform: translateY(-10px) scale(1.05);
+  box-shadow:
+    0 15px 40px rgba(229, 9, 20, 0.45),
+    inset 0 0 15px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(229, 9, 20, 0.5);
+}
+.card{
+  transition: transform .9s ease, box-shadow .9s ease, border .9s ease;
+}
+
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+
+    input,
+    textarea {
+      background: #111;
+      color: #fff;
+    }
+
+    button {
+      background: #e50914;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(229, 9, 20, .4);
+    }
+
+    /* ================= POPUP ================= */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: .4s;
+      z-index: 2000;
+    }
+
+    .popup.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-box {
+      background: #141414;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(229, 9, 20, .4);
+      animation: popGlow .6s ease forwards;
+    }
+         .logo:hover{
+background-color: yellow;
+color: red;
+border-radius: 10px;
+width: max-content;
+
+    }
+
+    @keyframes popGlow {
+      0% {
+        transform: scale(.6);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(229, 9, 20, 0);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(229, 9, 20, .6);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(229, 9, 20, .4);
+      }
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      text-align: center;
+      padding: 35px;
+      background: #111;
+      color: #aaa;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 900px) {
+
+      .menu-btn {
+        display: block;
+        
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(15, 15, 15, .95);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease;
+      }
+
+      .nav-links.active {
+        max-height: 450px;
+      }
+
+      .nav-links a {
+        margin: 12px 0;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+        display: flex;
+        margin-top: 10px;
+      }
+
+      /* ===== MOBILE CLOSE BUTTON FIX ===== */
+      .nav-links .close-btn {
+        display: block;
+        position: absolute;
+        top: 12px;
+        right: 20px;     /* ✅ RIGHT END */
+        font-size: 28px;
+        cursor: pointer;
+        color: #fff;
+        z-index: 5;
+      }
+
+
+
+      .nav-links .close-btn:hover {
+        color: #e50914;
+      }
+
+      .nav-links a:first-of-type {
+        margin-top: 45px;
+      }
+    }
+
+    /* Hide close button on desktop */
+    .nav-links .close-btn {
+      display: none;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: red;
+    }
+
+    .logo:hover{
+background-color: yellow;
+color: red;
+border-radius: 10px;
+width: max-content;
+
+    }
+/* ================= FOOTER ================= */
+footer {
+  background: #0b0b0b;
+  padding: 60px 40px;
+  display: flex;
+  flex-wrap: wrap;          /* ✅ allows mobile wrapping */
+  gap: 35px;
+  justify-content: space-between;
+}
+
+footer > div {
+  flex: 1 1 220px;          /* ✅ row-wise layout */
+  min-width: 220px;
+}
+
+footer h4 {
+  color: #e50914;
+  margin-bottom: 12px;
+}
+
+footer p,
+footer a {
+  color: #aaa;
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+  margin: 6px 0;
+  transition: .3s;
+}
+
+footer a:hover {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  flex-basis: 100%;         /* ✅ full width row */
+  text-align: center;
+  margin-top: 25px;
+  border-top: 1px solid #000000e7;
+  padding-top: 18px;
+  color: #777;
+  font-size: 13px;
+}
+
+/* ================= FOOTER MOBILE ================= */
+@media (max-width: 900px) {
+  footer {
+    padding: 40px 20px;
+    gap: 25px;
+  }
+
+  footer > div {
+    text-align: center;
+  }
+}
+
+
+    * Footer */
+footer{
+background:#0b0b0b;
+padding:60px 40px;
+display:flex;
+flex-direction: row;
+/* grid-template-columns:repeat(3,1fr); */
+gap:35px
+}
+footer h4{
+color:var(--primary);
+margin-bottom:12px
+; color: red;
+}
+footer p,
+footer a{
+color:#aaa;
+font-size:14px;
+text-decoration:none;
+display:block;
+margin:6px 0;
+transition:.3s
+}
+footer a:hover{color:#fff}
+
+.footer-bottom{
+/* grid-column:1/-1; */
+text-align:center;
+display: flex;
+margin-top:25px;
+border-top:1px solid #000000e7;
+padding-top:18px;
+color:#777;
+font-size:13px
+}
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">🎬 Movie<span>Book</span></div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="menu">
+      <a href="index.html">Home</a>
+      <a href="movies.html">Movies</a>
+      <a href="booking.html">Booking</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Contact MovieBook</h1>
+      <p>Have questions or feedback? We’re here to help.</p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="card">
+  <h2>Send Us a Message</h2>
+
+  <form action="https://formspree.io/f/xqeedzpa" method="POST" onsubmit="handleSubmit(event)">
+    
+    <input type="text" name="name" id="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" id="email" placeholder="Your Email" required>
+
+    <textarea name="message" id="msg" rows="4" placeholder="Your Message" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+</div>
+
+    <div class="card">
+      <h2 style="color:#e50914">Get in Touch</h2>
+      <br>
+      <p>📍 India</p>
+      <br>
+      <p>📧 support@moviebook.com</p><br>
+      <p>📞 +91 6204106600</p><br>
+      <p> At MovieBook, we believe in fast, friendly, and reliable support. Our Contact page is designed to help users easily reach out for queries related to movie bookings, account assistance, partnerships, feedback, or technical issues. Whether you have a question, a suggestion, or need help with our services, our team is always ready to listen and assist you. We value your feedback as it helps us improve our platform and deliver a better entertainment experience for everyone.</p>
+    </div>
+  </section>
+
+  <footer>
+  <div>
+    <h4>MovieBook</h4>
+    <p>Premium movie ticket booking platform delivering cinematic experiences with speed, security, and style.</p>
+  </div>
+
+  <div>
+    <h4>Quick Links</h4>
+    <a href="./index.html">Home</a>
+    <a href="./booking.html">Booking</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./Help and support.html">Help</a>
+  </div>
+
+  <div>
+    <h4>Legal</h4>
+    <a href="./privacy.html">Privacy Policy</a>
+    <a href="./condition.html">Terms & Conditions</a>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 MovieBook | Designed by Shivam Kumar – Professional Level Webcoder
+  </div>
+  </footer>
+
+  <div class="popup" id="popup">
+    <div class="popup-box">
+      <h3 style="color:#e50914">Message Sent!</h3>
+      <p>We’ll contact you soon.</p>
+    </div>
+  </div>
+
+  <script>
+    const menu = document.getElementById("menu");
+
+    const closeBtn = document.createElement("div");
+    closeBtn.innerHTML = "✕";
+    closeBtn.className = "close-btn";
+    closeBtn.onclick = toggleMenu;
+    menu.prepend(closeBtn);
+
+    function toggleMenu() {
+      menu.classList.toggle("active");
+    }
+
+    function submitForm() {
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const msg = document.getElementById("msg");
+
+      if (!name.value || !email.value || !msg.value) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      localStorage.setItem("contactMessage", JSON.stringify({
+        name: name.value,
+        email: email.value,
+        message: msg.value
+      }));
+
+      const popup = document.getElementById("popup");
+      popup.classList.add("active");
+
+      setTimeout(() => popup.classList.remove("active"), 2600);
+
+      name.value = email.value = msg.value = "";
+    }
+
+ function handleSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        document.getElementById("popup").classList.add("active");
+        form.reset();
+        setTimeout(() => {
+          document.getElementById("popup").classList.remove("active");
+        }, 2600);
+      } else {
+        alert("Oops! Something went wrong.");
+      }
+    }).catch(() => {
+      alert("Network error. Please try again.");
+    });
+  }
+
+  </script>
+
+</body>
+</html>

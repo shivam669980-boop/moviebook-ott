@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About | MovieBook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+:root{
+  --primary:#e50914;
+  --dark:#0f0f0f;
+  --glass:rgba(255,255,255,.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:var(--dark);color:#fff;overflow-x:hidden}
+
+/* Glass Navbar */
+nav{
+position:fixed;top:0;width:100%;
+padding:15px 40px;
+background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));
+backdrop-filter:blur(14px);
+display:flex;justify-content:space-between;align-items:center;
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,.08)
+}
+
+/* Logo */
+.logo{
+font-size:26px;font-weight:700;
+display:flex;align-items:center;gap:6px
+}
+.logo span{color:var(--primary)}
+.logo:hover{
+    background-color: yellow;
+    color: red;
+    border-radius: 10px;
+}
+
+/* Nav links */
+.nav-links{display:flex;align-items:center}
+
+/* Animated underline */
+nav a{
+color:#fff;
+margin:0 15px;
+text-decoration:none;
+position:relative;
+padding-bottom:6px;
+font-size:15px;
+transition:.3s
+}
+nav a::after{
+content:'';
+position:absolute;
+left:0;bottom:0;
+width:0;height:2px;
+background:var(--primary);
+transition:.3s
+}
+nav a:hover::after{width:100%}
+nav a:hover{color:var(--primary)}
+
+/* Hamburger */
+.hamburger{
+display:none;
+font-size:28px;
+cursor:pointer;
+user-select:none;
+transition:.3s
+}
+
+/* Hero */
+.hero{
+height:70vh;
+background:
+linear-gradient(to top,#0000006e 0.3%,transparent),
+url('https://img.freepik.com/premium-vector/abstract-glowing-lines-pattern-dark-background-minimalist-geometric-design_1180355-10288.jpg?semt=ais_hybrid&w=740&q=80') center/cover;
+display:flex;
+align-items:center;
+padding:40px
+}
+
+
+.hero h1{
+  font-size:3.5rem;
+  font-weight:800;
+  letter-spacing:1px
+}
+
+.hero h1{
+  transition: all 0.4s ease;
+}
+
+.hero h1:hover{
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  text-transform: capitalize;
+  transform: translateY(-10px) scale(1.05);
+  letter-spacing: 1px;
+  font-size: 3.5rem;
+} 
+.hero p{
+max-width:600px;
+margin-top:15px;
+font-size:1.1rem;
+color:#ddd
+}
+
+/* Content */
+.section{
+padding:90px 40px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center
+}
+
+.section img{
+width:100%;
+border-radius:18px;
+padding:22px;
+background:linear-gradient(135deg,#1a1a1a,#111);
+/* box-shadow:0 15px 40px rgba(229,9,20,.35); */
+transition:.6s
+}
+.section img:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 7px 20px rgba(229,9,20,.6)
+}
+/* ================= MOBILE HERO TEXT FIX ================= */
+@media (max-width:900px){
+
+  .hero{
+    height:60vh;
+    padding:30px 22px;
+  }
+
+  .hero h1{
+    font-size:2.5rem !important;
+    line-height:1.25;
+    font-weight:700;
+  }
+
+  .hero p{
+    font-size:0.95rem;
+    margin-top:12px;
+  }
+}
+
+/* Stats */
+.stats{
+display:flex;
+justify-content:space-around;
+padding:70px;
+background:#111;
+text-align:center;
+gap:30px
+}
+.stat{
+padding:25px 35px;
+border-radius:15px;
+transition:.4s
+}
+.stat:hover{
+background:#1a1a1a;
+box-shadow:0 0 35px rgba(229,9,20,.45)
+}
+.stat h3{
+font-size:2.5rem;
+color:var(--primary)
+}
+.stat p{color:#e2e2e2}
+
+/* Footer */
+footer{
+background:#0b0b0b;
+padding:60px 40px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:35px
+}
+footer h4{
+color:var(--primary);
+margin-bottom:12px
+}
+footer p,
+footer a{
+color:#aaa;
+font-size:14px;
+text-decoration:none;
+display:block;
+margin:6px 0;
+transition:.3s
+}
+footer a:hover{color:#fff;
+font-weight: 700;}
+
+.footer-bottom{
+grid-column:1/-1;
+text-align:center;
+margin-top:25px;
+border-top:1px solid #000000e7;
+padding-top:18px;
+color:#777;
+font-size:13px
+}
+
+/* Animations */
+.fade{
+opacity:0;
+transform:translateY(35px);
+transition:.8s
+}
+.fade.show{
+opacity:1;
+transform:none
+}
+
+/* Responsive */
+@media(max-width:900px){
+.hero{
+height:60%;
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top right, rgba(0,179,255,0.18), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(10,28,255,0.22), transparent 45%),
+    linear-gradient(135deg, var(--dark1), var(--dark2));
+  color:#ffffff;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
+/* background-image: radial-gradient(blue, black, ); */
+padding:120px 25px 70px
+}
+.hero h1{font-size:2.3rem}
+
+.section{
+grid-template-columns:1fr;
+padding:70px 25px
+}
+
+.stats{
+flex-direction:column
+}
+
+footer{
+grid-template-columns:1fr
+}
+
+nav{
+padding:15px 22px
+}
+
+/* Mobile Menu */
+.hamburger{display:block}
+
+@media(max-width:900px){
+
+  /* Hamburger visible */
+  .hamburger{display:block; z-index:1100;}
+
+  /* Mobile Menu Panel */
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:280px;
+    height:100vh;
+    background:#0b0b0b;
+    backdrop-filter:blur(14px);
+    flex-direction:column;
+    align-items:flex-start;
+    padding:90px 30px;
+    transition: right .45s ease;
+    box-shadow:-20px 0 40px rgba(0,0,0,.8);
+    z-index:1050;
+  }
+
+  .nav-links.active{
+    right:0;
+  }
+
+  .nav-links a{
+    margin:18px 0;
+    font-size:17px;
+    width:100%;
+  }
+
+}
+
+.nav-links a{
+margin:16px 0;
+font-size:16px
+}
+
+}
+
+ .hero h1{
+  font-size:2rem;
+  font-weight:800;
+}
+
+.hero h1{
+  transition: all 0.4s ease;
+}
+
+.hero h1:hover{
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  text-transform: capitalize;
+  transform: translateY(-5px) scale(1.05);
+  letter-spacing: 1px;
+} 
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">🎬 Movie<span>Book</span></div>
+
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="./signup.html">Signup</a>
+    <!-- <a href="./dowload.html">Download</a> -->
+    <a href="./payement.html">Subscription & Plans </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <h1>About MovieBook</h1>
+    <p>
+      MovieBook is a premium movie ticket booking and entertainment platform inspired by
+      a Netflix-level cinematic experience. Discover, book, and enjoy movies effortlessly.
+    </p>
+  </div>
+</section>
+
+<!-- About Content -->
+<section class="section fade">
+  <div>
+    <h2>Who We Are</h2>
+    <p>
+      MovieBook is built for movie lovers who value speed, simplicity, and a visually
+      immersive experience. From discovering trending films to instant ticket booking,
+      we combine performance with elegant design.
+    </p>
+    <p style="margin-top:15px">
+      Movies are more than entertainment — they’re moments worth experiencing.
+    </p>
+  </div>
+  <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4">
+</section>
+
+<!-- Mission -->
+<section class="section fade">
+  <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba">
+  <div>
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to deliver a secure, reliable, and world-class movie booking platform
+      powered by modern technology, responsive design, and user-first experience.
+    </p>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats fade">
+  <div class="stat">
+    <h3>1000+</h3>
+    <p>Movies</p>
+  </div>
+  <div class="stat">
+    <h3>50K+</h3>
+    <p>Happy Users</p>
+  </div>
+  <div class="stat">
+    <h3>24/7</h3>
+    <p>Customer Support</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div>
+    <h4>MovieBook</h4>
+    <p>Premium movie ticket booking platform delivering cinematic experiences with speed, security, and style.</p>
+  </div>
+
+  <div>
+    <h4>Quick Links</h4>
+    <a href="./index.html">Home</a>
+    <a href="./booking.html">Booking</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./Help and support.html">Help</a>
+  </div>
+
+  <div>
+    <h4>Legal</h4>
+    <a href="./privacy.html">Privacy Policy</a>
+    <a href="./condition.html">Terms & Conditions</a>
+    <a href="./payement.html">Subscription & Plans</a>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 MovieBook | Designed by Shivam Kumar – Professional Level Webcoder
+  </div>
+</footer>
+
+<script>
+/* Fade animation */
+const faders = document.querySelectorAll('.fade');
+window.addEventListener('scroll',()=>{
+  faders.forEach(f=>{
+    const top = f.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) f.classList.add('show');
+  });
+});
+
+/* Hamburger menu */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.onclick = () => {
+  navLinks.classList.toggle('active');
+  hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+};
+
+navLinks.querySelectorAll('a').forEach(link=>{
+  link.onclick=()=>{
+    navLinks.classList.remove('active');
+    hamburger.textContent='☰';
+  };
+});
+</script>
+
+</body>
+</html>

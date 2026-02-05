@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Download | MovieBook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0f0f0f;color:#fff}
+
+/* Navbar */
+nav{position:fixed;top:0;width:100%;
+padding:15px 40px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+display:flex;justify-content:space-between;
+z-index:1000
+}
+nav a{color:#fff;margin:0 15px;text-decoration:none}
+nav a:hover{color:#e50914}
+
+/* Hero */
+.hero{
+height:55vh;
+background:
+linear-gradient(to top,#000,transparent),
+url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba') center/cover;
+display:flex;align-items:center;padding:40px
+}
+.hero h1{font-size:3rem}
+
+/* Content */
+.download{
+padding:80px 40px;
+display:grid;grid-template-columns:1fr 1fr;
+gap:40px;align-items:center
+}
+.download img{
+width:100%;border-radius:15px;
+box-shadow:0 20px 40px rgba(0,0,0,.5)
+}
+button{
+background:#e50914;color:white;
+border:none;padding:15px 25px;
+border-radius:6px;font-size:1rem;
+cursor:pointer;margin-top:15px
+}
+button:hover{opacity:.9}
+
+/* Footer */
+footer{
+text-align:center;padding:30px;
+background:#111;color:#aaa
+}
+
+/* Responsive */
+@media(max-width:900px){
+.download{grid-template-columns:1fr}
+.hero h1{font-size:2.2rem}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>🎬 MovieBook</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="movies.html">Movies</a>
+<a href="booking.html">Booking</a>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+<h1>Download Your Movie</h1>
+<p>Enjoy cinema anytime, anywhere</p>
+</div>
+</section>
+
+<section class="download">
+<div>
+<h2 id="movieName"></h2>
+<p>
+Your payment was successful.  
+You can now download or watch your movie.
+</p>
+<button onclick="downloadMovie()">⬇ Download</button>
+<button onclick="watchMovie()">▶ Watch Now</button>
+</div>
+
+<img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg">
+</section>
+
+<footer>
+© 2025 MovieBook | Happy Watching 🎬
+</footer>
+
+<script>
+if(localStorage.getItem("payment")!=="success"){
+alert("Access Denied!");
+location.href="index.html";
+}
+
+const movie = localStorage.getItem("selectedMovie");
+document.getElementById("movieName").innerText = movie;
+
+function downloadMovie(){
+alert("Downloading "+movie+"...");
+}
+
+function watchMovie(){
+alert("Streaming "+movie+"...");
+}
+</script>
+
+</body>
+</html>

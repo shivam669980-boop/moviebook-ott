@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Help & Support | MovieBook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- style.css -->
+<style>
+:root{
+  --primary:#e50914;
+  --bg:#0b0b0b;
+  --card:#141414;
+  --nav-height:72px;
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:#fff;
+  padding-top:var(--nav-height);
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:var(--nav-height);
+  padding:0 55px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(15,15,15,.92);
+  backdrop-filter:blur(18px);
+  z-index:1000;
+}
+
+.logo:hover{
+background-color: yellow;
+color: rgb(255, 12, 12);
+transform: translate(2);
+border-radius: 10px;
+
+}
+.hero h1{
+  font-size:3.5rem;
+  font-weight:800;
+}
+
+.hero h1{
+  transition: all 0.4s ease;
+}
+
+.hero h1:hover{
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  text-transform: capitalize;
+  transform: translateY(-10px) scale(1.05);
+  letter-spacing: 1px;
+}
+
+.logo{
+  font-size:1.6rem;
+  font-weight:650;
+}
+.logo span{color:var(--primary)
+;
+font-weight: 700;}
+/* .logo::after{content:"."} */
+
+.home-btn{
+  padding:14px 22px;
+  border:none;
+  border-radius:12px;
+  background:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:.35s;
+}
+
+.home-btn a{
+  text-decoration:none;
+  color:#000;
+}
+
+.home-btn:hover{
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 0 38px rgba(255, 12, 25, 0.7);
+  background-color: rgb(255, 38, 0);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:55vh;
+  background:url("https://png.pngtree.com/thumb_back/fh260/background/20231127/pngtree-abstract-christmas-smooth-neon-light-red-background-layout-design-studio-room-image_15299405.jpg") center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.6));
+}
+
+.hero h1{
+  position:relative;
+  font-size:3.2rem;
+  z-index:1;
+  text-shadow:0 0 25px rgba(229,9,20,.6);
+}
+
+/* HELP */
+.help{
+  padding:70px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.help-item{
+  background:var(--card);
+  padding:28px;
+  border-radius:16px;
+  margin-bottom:22px;
+  transition:.35s;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.help-item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+
+.help-item h3{
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+.help-item p{
+  color:#ccc;
+  line-height:1.7;
+}
+
+/* FOOTER */
+.footer{
+  background:#000;
+  padding:60px 70px 30px;
+  border-top:3px solid var(--primary);
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+/* APP BOXES */
+.footer-apps{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.app-box{
+  background:#141414;
+  padding:18px;
+  border-radius:14px;
+  transition:.35s;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.08);
+  text-align:center;
+}
+
+.app-box img{
+  width:100%;
+  max-width:160px;
+}
+
+.app-box:hover{
+  background:var(--primary);
+  transform:translateY(-5px) scale(1.03);
+  box-shadow:0 10px 30px rgba(229,9,20,.6);
+}
+
+/* TERMS */
+.footer-about h3{
+  color:var(--primary);
+  margin-bottom:14px;
+  font-size:1.3rem;
+  text-align:center;
+}
+
+.footer-about p{
+  color:#bbb;
+  line-height:1.8;
+  font-size:.95rem;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+
+/* BOTTOM */
+.footer-bottom{
+  margin-top:35px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  color:#777;
+  font-size:.9rem;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-apps{
+    flex-direction:row;
+    justify-content:center;
+  }
+}
+
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .hero h1{font-size:2.2rem}
+  .help{padding:40px 20px}
+}
+
+@media(max-width:600px){
+  .footer{
+    padding:40px 20px 25px;
+  }
+
+  .footer-apps{
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:block}
+  
+}
+
+/* * ================= NAVBAR ================= */ */
+nav{
+  position:fixed;top:0;width:100%;
+  padding:16px 30px;
+  background:rgba(16, 14, 14, 0.764);
+  backdrop-filter:blur(10px);
+  display:flex;justify-content:space-between;align-items:center;
+  z-index:1000;
+  box-shadow: 0 10px 40px rgba(31, 25, 25, 0.748);
+}
+.logo{
+  font-size:26px;font-weight:700;cursor:pointer;
+}
+.logo span{color:var(--primary)}
+.nav-links a{
+  color:#fff;text-decoration:none;margin:10px 14px;
+  position:relative;font-size:15px
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-6px;
+  width:0;height:2px;background:var(--primary);transition:.3s
+}
+.nav-links a:hover::after{width:100%}
+
+.hamburger{display:none;font-size:35px;cursor:pointer}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;right:0;top:0;height:100%;width:260px;
+  background:#070707;padding:30px;
+  transform:translateX(100%);
+  transition:.4s;z-index:2000
+}
+.mobile-menu.active{transform:translateX(0)}
+.mobile-menu .close{
+  position:absolute;right:22px;top:18px;
+  font-size:30px;cursor:pointer
+}
+.mobile-menu a{
+  display:block;margin:18px 0;
+  color:#fff;text-decoration:none;font-size:18px
+}
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:block}}
+
+  @media(max-width:700px){
+  nav{padding:0 25px}
+  .nav-links{display:none}
+  .menu-btn{display:block}}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">🎬 Movie<span>Book</span></div>
+  <div class="nav-links">
+  <a href="./index.html">Home</a>
+<a href="./movies.html">Movies</a>
+ <a href="./about.html">About</a>
+<a href="./contact.html">Contact</a>
+<a href="./signup.html">Signup</a>
+<a href="./login.html">Login</a>
+<a href="./dowload.html">Download</a>
+<a href="./payement.html">Subscription & Plans </a>
+<!-- <a href="./booking.html">Booking</a> -->
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="menu">
+  <div class="close" onclick="toggleMenu()">✖</div>
+  <a href="./index.html">Home</a>
+<a href="./movies.html">Movies</a>
+ <a href="./about.html">About</a>
+<a href="./contact.html">Contact</a>
+<a href="./signup.html">Signup</a>
+<a href="./login.html">Login</a>
+<!-- <a href="./dowload.html">Download</a> -->
+<a href="./payement.html">Subscription & Plans </a>
+<!-- <a href="./booking.html">Booking</a> -->
+</div>
+
+<section class="hero">
+  <h1>Help & Support</h1>
+</section>
+
+<section class="help">
+  <div class="help-item">
+    <h3>Account Issues</h3>
+    <p>Having trouble logging in or managing your account? Our support team is here to help.</p>
+  </div>
+
+  <div class="help-item">
+    <h3>Subscription & Billing</h3>
+    <p>View plans, manage payments, or cancel subscriptions easily.</p>
+  </div>
+
+  <div class="help-item">
+    <h3>Streaming Problems</h3>
+    <p>If content buffers, check your internet connection or refresh the page.</p>
+  </div>
+
+  <div class="help-item">
+    <h3>Contact Support</h3>
+    <p>Email us at <b>support@moviebook.com</b></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+
+    <div class="footer-apps">
+      <a class="app-box" href="https://www.apple.com/in/app-store/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Download_on_the_App_Store_RGB_blk.svg" alt="App Store">
+      </a>
+
+      <a class="app-box" href="https://play.google.com/store" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+      </a>
+    </div>
+
+    <div class="footer-about">
+      <h3>Terms & Conditions</h3>
+      <p>
+        By using MovieBook, you agree to follow our platform rules and policies.
+        MovieBook is a UI/UX demonstration OTT platform. All content is used for
+        design and educational purposes only. Unauthorized copying or misuse is
+        prohibited. Continued usage means acceptance of updated terms.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 MovieBook. All Rights Reserved.
+  </div>
+</footer>
+<script>
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

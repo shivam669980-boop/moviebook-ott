@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MovieBook | Netflix Style Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --primary:#e50914;
+  --dark:#0b0b0b;
+  --card:#141414;
+  --text:#ffffff;
+  --muted:#b3b3b3;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:#000;
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ===== Background ===== */
+.hero{
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.600),rgba(0,0,0,.9)),
+    url("https://bingeddata.s3.amazonaws.com/uploads/2020/12/2020-OTT-movies-films-web-series-India-1.jpg")
+    center/cover no-repeat;
+}
+
+/* ===== Navbar ===== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(22, 22, 22, 0.73);
+  backdrop-filter:blur(8px);
+  z-index:1000;
+}
+
+.logo{
+  color:white;
+  font-size:26px;
+  font-weight:700;
+}
+
+.logo span{ color:#e50914; }
+
+.logo:hover{
+  color:red;
+  background-color:yellow;
+  border-radius:10px;
+  font-weight:700;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-size:15px;
+  position:relative;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--primary),#ff6b6b);
+  transition:.3s;
+}
+
+.nav-links a:hover::after{ width:100%; }
+
+.hamburger{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* ===== Mobile Menu ===== */
+.mobile-menu{
+  position:fixed;
+  right:-100%;
+  top:0;
+  width:260px;
+  height:100vh;
+  background:#000;
+  padding:25px;
+  transition:.4s;
+  z-index:2000;
+}
+
+.mobile-menu.active{ right:0; }
+
+.mobile-menu .close{
+  font-size:26px;
+  text-align:right;
+  cursor:pointer;
+}
+
+.mobile-menu a{
+  display:block;
+  margin:25px 0;
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+}
+
+/* ===== Auth Card ===== */
+.auth-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:90px;
+
+}
+
+.auth-card{
+  width:100%;
+  max-width:400px;
+  background:rgba(18, 18, 18, 0.803);
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 30px 70px rgba(0, 0, 0, 0.925);
+  animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.auth-card h2{
+  font-size:28px;
+  margin-bottom:25px;
+}
+
+/* ===== Inputs ===== */
+.auth-card input{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  background:#222;
+  border:none;
+  border-radius:8px;
+  color:#fff;
+}
+
+/* ✅ FIXED RED SPRAY ISSUE (ONLY CHANGE HERE) */
+/* .auth-card input:focus{
+  outline:none;
+  box-shadow:0 0 0 2px rgba(15, 99, 147, 0.6);
+} */
+
+.options{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.options label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--muted);
+}
+
+.options a{
+  color:var(--muted);
+  text-decoration:none;
+  color: white;
+}
+
+.auth-card button{
+  width:100%;
+  padding:14px;
+  background:var(--primary);
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.auth-card #title{
+    transition: all 0.4s ease;
+}
+
+.auth-wrapper{
+  transition: transform 0.45s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.45s cubic-bezier(.22,1,.36,1);
+}
+
+.auth-wrapper:hover{
+  transform: translateY(-16px) scale(1.01);
+  box-shadow:
+    4px 20px 40px rgba(0,0,0,0.55),
+    5px 50px 80px rgba(0,0,0,0.85);
+}
+
+
+.auth-card #title:hover{
+text-shadow: 0 10px 25px rgba(0, 0, 0, 0.921);
+  text-transform: capitalize;
+  transform: translateY(-3px) ;
+}
+/* .auth-wrapper{
+  transition: .3s;
+} */
+
+.auth-card button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 27px rgba(255, 0, 0, 0.834);
+}
+
+/* ===== Spinner ===== */
+.spinner{
+  display:none;
+  width:30px;
+  height:30px;
+  border:3px solid #ff0000;
+  border-top:3px solid transparent;
+  border-radius:50%;
+  animation:spin 1.2s linear infinite;
+  margin:10px auto;
+}
+
+@keyframes spin{ to{transform:rotate(360deg);} }
+
+/* ===== Switch ===== */
+.switch{
+  margin-top:20px;
+  text-align:center;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.switch span{
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ===== Popup ===== */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+
+.popup-box{
+  background:#ffffffef;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  animation:scaleIn .4s ease;
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+@keyframes scaleIn{
+  from{transform:scale(.8); opacity:0;}
+  to{transform:scale(1); opacity:1;}
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  nav{padding:15px 20px;}
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#000;
+  padding:60px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  border-top:3px solid var(--primary);
+}
+
+footer h4{margin-bottom:15px;
+color: rgb(210, 19, 19);
+font-weight: 700;
+font-size: 18px;}
+
+footer a{
+  display:block;
+  color:#aaa;
+  text-decoration:none;
+  margin:8px 0;
+}
+footer a:hover{color:whitesmoke;font-weight: 700;
+}
+
+.copy{
+  grid-column:1/-1;
+  text-align: center;
+  margin-top:30px;
+  color:#d2d2d2;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  footer{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<nav>
+  <div class="logo"> 🎬 Movie<span>Book</span></div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./movies.html">Movies</a>
+    <a href="./about.html">About</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./signup.html">Signup</a>
+  </div>
+  <div class="hamburger" onclick="openMenu()">☰</div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="close" onclick="closeMenu()">✖</div>
+  <a href="./index.html">Home</a>
+  <a href="./movies.html">Movies</a>
+  <a href="./about.html">About</a>
+  <a href="./contact.html">Contact</a>
+  <a href="./signup.html">Signup</a>
+</div>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2 id="title">Sign In</h2>
+
+    <!-- ✅ REQUIRED + IDs ADDED -->
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <div class="options">
+      <label><input type="checkbox"> Remember me</label>
+      <a href="./Help and support.html">Need help?</a>
+    </div>
+
+    <button onclick="login()">Login</button>
+    <div class="spinner" id="spinner"></div>
+
+    <div class="switch">
+  New to MovieBook? <span onclick="location.href='signup.html'">Sign up now</span>
+</div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h3>Login Successful 🎉</h3>
+    <p>Redirecting...</p>
+  </div>
+</div>
+<!-- FOOTER -->
+<footer>
+  <div>
+    <h4>MovieBook</h4>
+    <a href="./about.html">About</a>
+    <a href="./booking.html">Book Movie Ticket</a>
+  </div>
+  <div>
+    <h4>Support</h4>
+    <a href="./Help and support.html">Help Center</a>
+    <a href="./contact.html">Contact</a>
+   
+  </div>
+  <div>
+    <h4>Legal</h4>
+    <a href="./privacy.html">Privacy</a>
+    <a href="./condition.html">Terms & Condition</a>
+   
+  </div>
+  <div>
+    <h4>Apps</h4>
+    <a href="https://play.google.com/store/games?device=windows">Playstore</a>
+    <a href="https://www.apple.com/in/app-store/">App Store</a>
+  </div>
+  <div style="gap: 4px;" class="copy">
+MovieBook is a modern and user-friendly movie ticket booking platform designed to deliver a smooth and secure cinematic experience. With an elegant interface, fast performance, and responsive design across all devices, MovieBook allows users to explore movies, manage bookings, and access support effortlessly. Our focus on reliability, simplicity, and premium design ensures that every user enjoys a seamless journey from browsing to booking, making MovieBook a trusted destination for entertainment lovers.<br> <br>© 2025 MovieBook. All Rights Reserved.
+  </div>
+</footer>
+<script>
+function openMenu(){ mobileMenu.classList.add("active"); }
+function closeMenu(){ mobileMenu.classList.remove("active"); }
+
+/* ✅ REQUIRED VALIDATION (ONLY LOGIC FIX) */
+function login(){
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+
+  if(!email.value || !password.value){
+    alert("Please fill all required fields");
+    return;
+  }
+
+  document.getElementById("spinner").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("spinner").style.display="none";
+    document.getElementById("popup").style.display="flex";
+
+    setTimeout(()=>{
+      window.location.href="index.html";
+    },2000);
+  },2000);
+}
+
+function toggle(){
+  const title=document.getElementById("title");
+  const btn=document.querySelector("button");
+  title.innerText = title.innerText==="Sign In" ? "Sign Up" : "Sign In";
+  btn.innerText = btn.innerText==="Login" ? "Sign Up" : "Login";
+}
+</script>
+
+</body>
+</html>
